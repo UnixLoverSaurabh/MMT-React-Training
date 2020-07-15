@@ -1,18 +1,30 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
-function AddTodo() {
+function AddTodo(props) {
         const [text, setText] = useState('12');
-
-        const submitTextHandler = () => {
-                console.log(text);
-        };
 
         return (
                 <div>
                         <input type="text" value={text} onChange={event => { setText(event.target.value) }} />
-                        <button onClick={submitTextHandler} >Add</button>
+                        <button onClick={() => props.submitTextHandler(text)} >Add</button>
                 </div>
         );
 };
 
-export default AddTodo;
+const mapStateToProps = (state) => {
+        return {
+
+        }
+};
+
+const mapDispatchToProps = (dispatch) => {
+        return {
+                submitTextHandler: (text) => dispatch({
+                        type: 'ADD_TODO',
+                        data: text
+                })
+        }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddTodo);
