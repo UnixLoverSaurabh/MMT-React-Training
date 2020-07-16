@@ -10,22 +10,28 @@ function TodoList(props) {
                                 return (<TodoItem todoItem={todoListItem} />)
                         })}
 
-                        <span style={{ padding: 10 }}>ALL</span>
-                        <span style={{ padding: 10 }}>PENDING</span>
-                        <span style={{ padding: 10 }}>FINISHED</span>
+                        <span style={{ padding: 10, fontWeight: props.currFilter === 'ALL' ? 'bolder' : 'normal' }} onClick={() => {props.setFilter('ALL')}} >ALL</span>
+                        <span style={{ padding: 10, fontWeight: props.currFilter === 'FINISHED' ? 'bolder' : 'normal' }} onClick={() => {props.setFilter('FINISHED')}} >FINISHED</span>
+                        <span style={{ padding: 10, fontWeight: props.currFilter === 'PENDING' ? 'bolder' : 'normal' }} onClick={() => {props.setFilter('PENDING')}} >PENDING</span>
                 </div>
         );
 };
 
 const mapStateToProps = (state) => {
         return {
-                todoListItems: state.todoListItems
+                todoListItems: state.todoListItems,
+                currFilter: state.currentFilter
         };
 };
 
 const mapDispatchToProps = (dispatch) => {
         return {
-
+                setFilter: (filter) => {
+                        dispatch({
+                                type: 'SET_FILTER',
+                                data: filter
+                        })
+                }
         };
 };
 

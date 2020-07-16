@@ -1,5 +1,6 @@
 const initialState = {
-        todoListItems: []
+        todoListItems: [],
+        currentFilter: 'ALL'
 };
 
 function Reducer(state = initialState, action) {
@@ -9,6 +10,11 @@ function Reducer(state = initialState, action) {
                         return {
                                 ...state,
                                 todoListItems: updatedTodoListItems
+                        }
+                case 'SET_FILTER':
+                        return {
+                                ...state,
+                                currentFilter: action.data
                         }
                 default:
                         console.log('Default case encountered');
