@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
         return {
                 submitTextHandler: (text) => dispatch({
                         type: 'ADD_TODO',
-                        data: text
+                        data: { text, completed: false }
                 })
         }
 };

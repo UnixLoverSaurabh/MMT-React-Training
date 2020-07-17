@@ -16,6 +16,14 @@ function Reducer(state = initialState, action) {
                                 ...state,
                                 currentFilter: action.data
                         }
+                case 'TOGGLE_TODO':
+                        const todoListItem = action.data;
+                        const updatedTodoListItems = todoListItem.map(() => {
+                                
+                        })
+                        return {
+                                ...state
+                        }
                 default:
                         console.log('Default case encountered');
                         return state;
